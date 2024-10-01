@@ -1,0 +1,74 @@
+plugins {
+	id 'org.springframework.boot' version '3.3.0'
+	id 'io.spring.dependency-management' version '1.1.5'
+	id 'java'
+	id "io.freefair.lombok" version "8.7.1"
+}
+
+group = 'com.boilerplate'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
+
+testing {
+	suites {
+		test {
+			useJUnitJupiter()
+		}
+
+		acceptanceTestJunit4(JvmTestSuite) {
+
+			useJUnit()
+
+			dependencies {
+				implementation project()
+				implementation 'org.springframework.boot:spring-boot-starter-test'
+				implementation 'io.cucumber:cucumber-java:7.18.1'
+				implementation 'io.cucumber:cucumber-junit:7.18.1'
+				implementation 'io.cucumber:cucumber-spring:7.18.1'
+			}
+
+			targets {
+				all {
+					testTask.configure {
+						systemProperty "cucumber.junit-platform.naming-strategy", "long"
+						shouldRunAfter(test)
+					}
+				}
+			}
+		}
+
+		acceptanceTestJunit5(JvmTestSuite) {
+			dependencies {
+				implementation project()
+				implementation 'org.springframework.boot:spring-boot-starter-test'
+				implementation 'io.cucumber:cucumber-java:7.18.1'
+				implementation 'io.cucumber:cucumber-junit-platform-engine:7.18.1'
+				implementation 'io.cucumber:cucumber-spring:7.18.1'
+				implementation 'org.junit.platform:junit-platform-suite:1.11.0-M1'
+			}
+
+			targets {
+				all {
+					testTask.configure {
+						systemProperty "cucumber.junit-platform.naming-strategy", "long"
+						shouldRunAfter(test)
+					}
+				}
+			}
+		}
+	}
+}
+
+tasks.check {
+	dependsOn(testing.suites.acceptanceTestJunit4)
+	dependsOn(testing.suites.acceptanceTestJunit5)
+}

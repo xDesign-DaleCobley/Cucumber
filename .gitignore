@@ -1,0 +1,47 @@
+# root project files
+**/.classpath
+**/.project
+**/.settings/
+**/.idea/
+**/*.iml
+
+# Maven and Java
+**/target/
+tmp/
+logs/
+*.class
+dump.rdb
+*.xml.versionsBackup
+
+# osx
+.DS_Store
+
+# temporary files
+*~
+*.swp
+
+# Gradle
+.gradle/
+build/
+out/
+
+# IntelliJ
+*.iml
+
+log/*
+
+# Helm
+/infrastructure/k8s/helm/chart/Chart.lock
+/infrastructure/k8s/helm/chart/charts/fdlib-*.tgz
+
+# jenv
+.java-version
+
+# Prevent accidental commit of plaintext credentials files when encrypting new ones
+infrastructure/vault/kv/*.plaintext.json
+
+# Sdkman
+.sdkmanrc
+
+# .terraform
+*.terraform/

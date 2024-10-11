@@ -40,6 +40,7 @@ testing {
 				all {
 					testTask.configure {
 						systemProperty "cucumber.junit-platform.naming-strategy", "long"
+						systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
 						shouldRunAfter(test)
 					}
 				}
@@ -59,6 +60,7 @@ testing {
 			targets {
 				all {
 					testTask.configure {
+						systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
 						systemProperty "cucumber.junit-platform.naming-strategy", "long"
 						shouldRunAfter(test)
 					}

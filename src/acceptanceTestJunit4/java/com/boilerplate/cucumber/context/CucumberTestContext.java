@@ -17,4 +17,9 @@ public class CucumberTestContext {
 
 	private String name;
 	private HttpResponse<String> response;
+
+	public void clear() {
+		name = null;
+		response = null;
+	}
 }

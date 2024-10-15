@@ -28,8 +28,8 @@ Feature: Example Feature
         | Judie |
 
   # Tags help organise tests.  Using tags we can run a subsection of our tests, e.g smoke tests only. See Readme to run via cmd line.
-    @NoName
-    Rule: Response without name
+  @NoName
+  Rule: Response without name
 
     Scenario: Valid GET request
       When a request is made to GET greeting
